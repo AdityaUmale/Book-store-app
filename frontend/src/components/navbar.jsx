@@ -1,8 +1,12 @@
 import React from 'react'
 import Login from './Login'
+import Logout from './Logout'  
+import { useAuth } from '../context/AuthProvider'
 
 
 function Navbar() {
+    const [authUser, setAuthUser]=useAuth()
+
   return (
    <>
    <div className='max-w-screen-2xl container mx-auto md:px-20 px-4 fixed left-0 right-0 top-0 z-50'>
@@ -36,6 +40,10 @@ function Navbar() {
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
 </label>
 </div>
+
+{
+  authUser?<Logout/>:
+
   <div className="">
    
     <a className="btn" onClick={()=> document.getElementById("my_modal_2").showModal()}>
@@ -44,6 +52,7 @@ function Navbar() {
       <Login/>
       
   </div>
+}
 </div>
    </div>
    </>
